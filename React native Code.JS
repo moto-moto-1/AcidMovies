@@ -6,7 +6,7 @@ import { AppRegistry,  Text,  View,  StyleSheet,  Picker,  ScrollView,  Platform
 import { Constants } from 'expo';
 
 export default class FlexDirectionBasics extends Component {
-  state = { user: 'rating', user1: 'Crime', user4: '10', data:<Text style={{color:'white'}}>oppa1</Text>, currentpage:1, nextpage:2, previouspage:1, nonext:'yes',noprevious: 'yes'};
+  state = { user: 'rating', user1: 'Crime', user4: '10', data:<Text style={{color:'white'}}></Text>, currentpage:1, nextpage:2, previouspage:1, nonext:'yes',noprevious: 'yes'};
  incoming={};
 
 
@@ -75,7 +75,7 @@ for (let i = 0; i < num3; i++) {
   result="result"+i;
   if(this.incoming[result].title.length>2){
 
-movies.push(<Image source={{uri: this.incoming[result].image}} style={{flex:1, width: 300, height: 300 ,backgroundColor:'yellow',margin: 1}}/>);
+movies.push(<Image source={{uri: this.incoming[result].image}} style={{ width: 300, height: 200 ,margin: 10}}/>);
    movies.push(<Text style={{fontSize:25,color:'white' ,fontWeight: "bold",marginTop:200 }}>{"\n"}{this.incoming[result].title}</Text>);
    movies.push(<Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n  "}{this.incoming[result].releaseyear}{"\n Rating: "}{this.incoming[result].rating}{"/10\n"}</Text>);
   movies.push(<Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n"}{this.incoming[result].description}{"\n"}</Text>);
