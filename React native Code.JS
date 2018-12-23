@@ -6,7 +6,7 @@ import { AppRegistry,  Text,  View,  StyleSheet,  Picker,  ScrollView,  Platform
 import { Constants } from 'expo';
 
 export default class FlexDirectionBasics extends Component {
-  state = { user: 'rating', user1: 'Crime', user4: '10', data:<Text style={{color:'white'}}></Text>, currentpage:1, nextpage:2, previouspage:1, nonext:'yes',noprevious: 'yes'};
+  state = {user: 'rating', user1: 'Crime', user4: '10', data:<Text style={{color:'white'}}></Text>, currentpage:'1', nextpage:'2', previouspage:'1', nonext:'no',noprevious: 'no'};
  incoming={};
 
 
@@ -16,14 +16,12 @@ export default class FlexDirectionBasics extends Component {
 _onPressButtonnex = () => {
   
   if(this.state.nonext=="no"){
-   this.setState({ currentpage: this.state.nextpage }); 
-   this._onPressButton;
+   this._onPressButton(this.state.nextpage);
   }
      };
 _onPressButtonpre = () => {
      if(this.state.noprevious=="no"){
-   this.setState({ currentpage: this.state.previouspage }); 
-   this._onPressButton;
+   this._onPressButton(this.state.previouspage);
   }
   };
 
@@ -41,17 +39,18 @@ _onPressButtonpre = () => {
     this.setState({ data: datain });
   };
 
-  _onPressButton = () => {
+  _onPressButton = (me) => {
+   
     let sort = this.state.user;
     let genre = this.state.user1;
     let results = this.state.user4;
-  
+  let currentn=this.state.currentpage;if(Number.isInteger(me)){currentn=me;}
 
     let jsondatatosend = JSON.stringify({
       sortby: this.state.user,
       genre: this.state.user1,
       resultperpage: this.state.user4,
-      pagenumber: this.state.currentpage,
+      pagenumber: currentn,
     });
 
 
