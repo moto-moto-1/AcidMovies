@@ -1,9 +1,29 @@
 //import * as React from 'react';
 import React, { Component } from 'react';
-import { AppRegistry,  Text,  View,  StyleSheet,  Picker,  ScrollView,  Platform,  Button,  Alert,  Image} from 
-
-'react-native';
+import { AppRegistry,  Text,  View,  StyleSheet,  Picker,  ScrollView,  Platform,  Button,  Alert,  Image} from 'react-native';
 import { Constants } from 'expo';
+
+
+class Movie extends Component {
+  render() {
+    return (
+      <View style={{flex: 1,flexDirection: 'column'}}>
+       <View style={{flex: 1}}>
+       <Image source={{uri: this.props.image}} style={{width: 300, height: 400,margin: 10}}/>
+       </View>
+       <View style={{flex: 1}}>
+       <Text style={{fontSize:25,color:'white' ,fontWeight: "bold" }}>{"\n"}{this.props.title}</Text>
+       <Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"  "}{this.props.releaseyear}{"\n Rating: "}{this.props.rating}{"/10\n"}</Text>
+       <Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n"}{this.props.description}{"\n"}</Text>
+       <Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n  Directed By:"}{this.props.director}{"\n\n  Actors:"}{this.props.actors}{"\n "}</Text>
+<Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{" Revenues: "}{this.props.profit}{"\n"}</Text>
+
+       </View>
+      </View>
+
+    );
+  }
+}
 
 export default class FlexDirectionBasics extends Component {
   state = {user: 'rating', user1: 'Crime', user4: '10', data:<Text style={{color:'white'}}></Text>, currentpage:'1', nextpage:'2', previouspage:'1', nonext:'no',noprevious: 'no'};
@@ -74,20 +94,16 @@ for (let i = 0; i < num3; i++) {
   result="result"+i;
   if(this.incoming[result].title.length>2){
 
-movies.push(<Image source={{uri: this.incoming[result].image}} style={{ width: 300, height: 200 ,margin: 10}}/>);
-   movies.push(<Text style={{fontSize:25,color:'white' ,fontWeight: "bold",marginTop:200 }}>{"\n"}{this.incoming[result].title}</Text>);
-   movies.push(<Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n  "}{this.incoming[result].releaseyear}{"\n Rating: "}{this.incoming[result].rating}{"/10\n"}</Text>);
-  movies.push(<Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n"}{this.incoming[result].description}{"\n"}</Text>);
-  movies.push(<Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n  Directed By:"}{this.incoming[result].director}{"\n\n  Actors:"}{this.incoming[result].actors}{"\n"}</Text>);
-  movies.push(<Text style={{fontSize:15,color:'white' ,fontWeight: "bold" }}>{"\n Revenues: "}{this.incoming[result].profit}{"\n"}</Text>);
- 
+movies.push(<Movie title={this.incoming[result].title} releaseyear={this.incoming[result].releaseyear} rating={this.incoming[result].rating} description={this.incoming[result].description} actors={this.incoming[result].actors} director={this.incoming[result].director} profit={this.incoming[result].profit} image={this.incoming[result].image} />);
+
+
 }
 }
 
 
 
 
-this.setState({ data: <Text style={{backgroundColor:'black'}}>{movies}</Text> });
+this.setState({ data: movies });
 
 
         return responseJson;
@@ -173,6 +189,7 @@ this.setState({ data: <Text style={{backgroundColor:'black'}}>{movies}</Text> })
         <View style={{ flex: 7, backgroundColor: 'black' }}>
           <ScrollView> 
           <View style={{ flex: 1}}>
+          
           {this.state.data}
           </View>
            <View style={{ flex: 1, backgroundColor: 'orange',flexDirection: 'row'  }}>
